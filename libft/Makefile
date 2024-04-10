@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+         #
+#    By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 21:19:51 by vsozonof          #+#    #+#              #
-#    Updated: 2024/01/28 22:04:47 by vsozonof         ###   ########.fr        #
+#    Updated: 2024/04/10 19:31:53 by rostrub          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,12 @@ SRCS = 	srcs/bool_functions/ft_isalpha.c\
 		srcs/bool_functions/ft_is_str_digit.c \
 		srcs/bool_functions/ft_is_whitespace.c \
 		srcs/bool_functions/ft_isminus.c \
+		srcs/fprintf/ft_printf.c \
+		srcs/fprintf/ft_puthexa.c \
+		srcs/fprintf/ft_putnbr.c \
+		srcs/fprintf/ft_putstrandchar.c \
+		srcs/fprintf/ft_putunsign.c \
+		srcs/fprintf/ft_putvoid.c \
 		srcs/str_functions/ft_toupper.c\
 		srcs/str_functions/ft_tolower.c\
 		srcs/str_functions/ft_striteri.c\
@@ -91,7 +97,7 @@ SRCS = 	srcs/bool_functions/ft_isalpha.c\
 		srcs/memory_functions/ft_memcmp.c\
 		srcs/memory_functions/ft_bzero.c\
 		srcs/memory_functions/ft_calloc.c\
-		
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(OBJS) $(NAME)
@@ -105,14 +111,14 @@ $(NAME): $(OBJS) $(HEADER)
 %.o: %.c
 	@echo "$(RD)LIBFT -\t$(WH)$(BL)Compiling $(OR)($<)$(WH)\c\r"
 	@$(CC) $(CFLAGS) -c -o $@ $<
-	@echo "                                   \r\c" 
-     
-     
+	@echo "                                   \r\c"
+
+
 clean:
-		@$(RM) $(OBJS) 
+		@$(RM) $(OBJS)
 		@echo "$(RD)LIBFT -\t$(WH)$(GR)All .o files were deleted !$(WH)"
 
-fclean: 
+fclean:
 		@$(RM) $(NAME) $(OBJS)
 		@echo "$(RD)LIBFT -\t$(WH)$(GR)All .o files and binaries were deleted !$(WH)"
 
