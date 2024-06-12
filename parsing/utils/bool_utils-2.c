@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:49:44 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/06/07 13:14:04 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/12 16:55:35 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_heredoc_counter(t_cmd *node)
 		ptr = pr->redirs;
 		while (ptr)
 		{
-			if (ptr->type == 3)
+			if (ptr->type == LIMITER)
 				i++;
 			ptr = ptr->next;
 		}

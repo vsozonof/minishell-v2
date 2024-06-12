@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:37:41 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/04/10 19:09:57 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:57:00 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	heredoc_finder(t_cmd *node, t_data *data)
 		nav1 = nav2->redirs;
 		while (nav1)
 		{
-			if (nav1->type == 3)
+			if (nav1->type == LIMITER)
 			{
 				if (!do_heredoc(nav1->file, nav1, data))
 					return (0);
