@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:00:09 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/10 10:00:52 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/14 06:46:40 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int	ft_exec_pipebultins(t_cmd *tmp, t_env **env, int tokken, t_data **data)
 	else if (tokken == ENV)
 		result = ft_print_env(*env);
 	else if (tokken == EXIT)
+	{
 		execute_exit(tmp->param, *data);
+		return((*data)->i_status);
+	}
 	else if (tokken == EXPORT)
 		result = ft_export(tmp->param, env);
 	else if (tokken == PWD)

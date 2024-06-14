@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:11:25 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/12 14:52:31 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/14 06:41:33 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int	ft_exec_bultins(t_cmd *cmd, t_env **env, int tokken, t_data **data)
 	else if (tokken == ENV)
 		return (ft_print_env(*env));
 	else if (tokken == EXIT)
+	{
 		execute_exit(cmd->param, *data);
+		return ((*data)->i_status);
+	}
 	else if (tokken == EXPORT)
 		return (ft_export(cmd->param, env));
 	else if (tokken == PWD)
