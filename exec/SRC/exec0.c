@@ -6,7 +6,7 @@
 /*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:20:12 by jule-mer          #+#    #+#             */
-/*   Updated: 2024/06/14 07:08:19 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/14 07:19:51 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip, t_data **data)
 		tmp = tmp->next;
 	}
 	close(pip->prev_pipes);
-	free((*data)->c_status);
-	(*data)->c_status = ft_itoa((*data)->i_status);
 	return (ft_wait_lstchild(pip));
 }
 

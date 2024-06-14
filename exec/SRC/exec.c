@@ -6,7 +6,7 @@
 /*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:43 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/14 06:48:38 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/14 07:20:01 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	ft_exec(t_cmd **cmd, t_env **env, t_data **data)
 	else
 		(*data)->i_status = ft_exec_all(*cmd, env, &pipex, data);
 	ft_close_fd(pipex.infile, pipex.outfile);
+	free((*data)->c_status);
+	(*data)->c_status = ft_itoa((*data)->i_status);
 	return ((*data)->i_status);
 }
 
