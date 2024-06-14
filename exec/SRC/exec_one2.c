@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_one2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:54:00 by jule-mer          #+#    #+#             */
-/*   Updated: 2024/06/10 10:01:42 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/14 11:35:10 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_execve_one2(t_pipex *pip, t_cmd *tmp, t_data **data)
 		close(pip->out);
 		close(pip->in);
 		free_master(*data);
+		free_end_of_program((*data)->pr);
 		exit(127);
 	}
 	else if (execve(pip->command, tmp->param, tmp->env) == -1)

@@ -6,7 +6,7 @@
 /*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:00:09 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/14 06:46:40 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/14 11:36:45 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ void	ft_exec_pipe5(t_pipex *pip, t_env **env, t_cmd *tmp, t_data **data)
 		close(1);
 		close(2);
 		free_master(*data);
+		free_end_of_program((*data)->pr);
 		exit(127);
 	}
 	ft_close_fd(pip->infile, pip->outfile);
 	if (execve(pip->command, tmp->param, tmp->env) == -1)
 	{
 		free_master(*data);
+		free_end_of_program((*data)->pr);
 		exit(1);
 	}
 }
@@ -49,7 +51,7 @@ int	ft_exec_pipebultins(t_cmd *tmp, t_env **env, int tokken, t_data **data)
 	else if (tokken == EXIT)
 	{
 		execute_exit(tmp->param, *data);
-		return((*data)->i_status);
+		return ((*data)->i_status);
 	}
 	else if (tokken == EXPORT)
 		result = ft_export(tmp->param, env);
@@ -58,7 +60,8 @@ int	ft_exec_pipebultins(t_cmd *tmp, t_env **env, int tokken, t_data **data)
 	else if (tokken == UNSET)
 		result = ft_unset(env, tmp->param);
 	free_master(*data);
-	return (result);
+	free_end_of_program((*data)->pr);
+	exit(result);
 }
 
 void	ft_close_one(int s, int i)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:31:37 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/12 16:51:49 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/14 11:24:45 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_exec_pipe(t_cmd *tmp, t_env **env, t_pipex *pip, t_data **data)
 	if (tokken == NO)
 		ft_exec_pipe5(pip, env, tmp, data);
 	else
-		result = ft_exec_bultins(tmp, env, tokken, data);
+		result = ft_exec_pipebultins(tmp, env, tokken, data);
 	ft_close_fd(pip->infile, pip->outfile);
-	exit (result);
+	return (result);
 }
 
 void	ft_exec_pipe2(t_pipex *pip)

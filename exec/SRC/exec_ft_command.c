@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ft_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 10:54:41 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/10 07:22:39 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/14 11:21:14 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	*ft_check_command(int fd, char *command, t_data **data)
 		close(fd);
 		ft_fprintf(2, "minishell : ");
 		ft_printf("%s: Is a Directory\n", command);
+		free_end_of_program((*data)->pr);
 		free_master(*data);
 		exit(126);
 	}
