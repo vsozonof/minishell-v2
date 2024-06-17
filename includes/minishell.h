@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:20:19 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/06/12 14:58:09 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/17 08:24:13 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +319,9 @@ void			free_tab(int **tab);
 //cd .c 3/5
 int				ft_cd(char **tab, t_env *env);
 int				ft_cd_2(char *path, t_env *env);
-void			ft_cd3(char *old, t_env *env);
+void			ft_add_oldpwd(char *old, t_env *env);
+int				ft_home(t_env *env);
+void			ft_add_pwd(char *pwd, t_env *env);
 
 //echo 2/5
 int				ft_echo(char **tab);

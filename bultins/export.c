@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 06:36:35 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/04 07:39:51 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/17 06:50:04 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,7 @@ t_env	*ft_add_export(char *str, t_env **env)
 	if (!tmp)
 		return (NULL);
 	tmp->var = ft_strdup(str);
-	if (*env == NULL)
-	{
-		*env = tmp;
-		(*env)->next = NULL;
-	}
-	else
-		ft_lstadd_back_env(env, tmp);
+	tmp->next = NULL;
+	ft_lstadd_back_env(env, tmp);
 	return (tmp);
 }
