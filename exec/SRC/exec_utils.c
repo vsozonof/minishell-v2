@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:11:25 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/14 06:41:33 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:05:06 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,32 @@ int	ft_exec_openfd(t_cmd **cmd, t_redir **tmp, t_pipex **pip)
 	while (*tmp)
 	{
 		if ((*tmp)->type == OUTFILE)
+		{
+			if((*pip)->outfile != 1)
+				close((*pip)->outfile);
 			(*pip)->outfile = open((*tmp)->file, O_TRUNC
 					| O_CREAT | O_RDWR, 00644);
+		}
 		else if ((*tmp)->type == APPEND)
+		{
+			if ((*pip)->outfile != 1)
+				close((*pip)->outfile);
 			(*pip)->outfile = open((*tmp)->file, O_APPEND | O_CREAT
 					| O_RDWR, 00644);
+		}
 		else if ((*tmp)->type == INFILE)
+		{
+			if ((*pip)->infile != 0)
+				close((*pip)->infile);
 			(*pip)->infile = open((*tmp)->file, O_RDONLY, 00644);
+		}
+		else if ((*tmp)->type == LIMITER)
+		{
+			if ((*pip)->infile != 0)
+				close((*pip)->infile);
+			(*pip)->infile = open((*tmp)->file, O_RDONLY, 00644);
+			unlink((*tmp)->file);
+		}
 		*tmp = (*tmp)->next;
 	}
 	tokken = ft_check2((*cmd)->param[0]);

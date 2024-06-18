@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:37:41 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/06/12 16:57:00 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/18 08:49:32 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	do_heredoc(char *delimiter, t_redir *redir_node, t_data *data)
 	free(delimiter);
 	redir_node->file = tmp_fname;
 	redir_node->fd = fd;
+	close(fd);
 	return (1);
 }
 
