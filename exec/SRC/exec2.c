@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:14:40 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/07 09:37:42 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:36:26 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	ft_nbr_cmd(t_cmd *cmd)
 	command = 0;
 	while (tmp)
 	{
-		command++;
+		if(tmp->param[0] != NULL)
+			command++;
 		tmp = tmp->next;
 	}
 	return (command);
