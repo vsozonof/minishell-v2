@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 06:50:00 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/17 08:24:50 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:51:31 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_cd(char **tab, t_env *env)
 
 int	ft_home(t_env *env)
 {
-	char *home;
+	char	*home;
 
 	home = ft_get_env(env, "HOME");
 	ft_cd_2(home, env);

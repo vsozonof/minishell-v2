@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:43 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/14 07:20:01 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/21 10:26:30 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_exec(t_cmd **cmd, t_env **env, t_data **data)
 	(void) env;
 	pipex.nbr_command = ft_nbr_cmd(*cmd);
 	if (pipex.nbr_command == 0)
-		return ((*data)->i_status);
+		return (ft_open_close(*cmd), (*data)->i_status);
 	if (pipex.nbr_command == 1)
 		(*data)->i_status = ft_exec_one(*cmd, env, &pipex, data);
 	else

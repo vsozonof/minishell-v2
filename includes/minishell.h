@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:20:19 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/06/17 08:24:13 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/21 10:27:49 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -420,6 +420,7 @@ char			*ft_check_command(int fd, char *command, t_data **data);
 int				ft_exec_openfd(t_cmd **cmd, t_redir **tmp, t_pipex **pip);
 int				ft_exec_bultins(t_cmd *cmd, t_env **env, int tokken,
 					t_data **data);
+void			ft_open_close(t_cmd *cmd);
 
 /*----------------------------------------------------------------------------*/
 /*                                    UTILS                                   */
