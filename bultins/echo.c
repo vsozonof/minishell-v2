@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rstrub <rstrub@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 06:27:10 by ertupop           #+#    #+#             */
-/*   Updated: 2023/10/30 10:31:46 by rstrub           ###   ########.fr       */
+/*   Updated: 2024/06/28 19:27:24 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	ft_echo2(char **tab, int i, int n)
 			ft_fprintf(2, "minishell: ");
 			ft_fprintf(2, "echo: write error: No space left on device\n");
 		}
-		if (tab[i + 1] != NULL)
-			write(1, " ", 1);
 		i++;
 	}
 	if (n != 1)
