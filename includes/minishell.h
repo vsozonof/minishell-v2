@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:20:19 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/06/21 10:27:49 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/28 16:31:06 by vsozonof         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,8 @@ char			*quote_remover_v2(char *str);
 // ! ---------------------------------------------------------------------------
 // ?							PARSING UTILS
 // ! ---------------------------------------------------------------------------
+
+void			print_nodes(t_cmd *node);
 
 t_input			**alloc_struct(t_input **ptr, int n);
 t_env			*ft_get_env_node(t_env *env, char *str);
