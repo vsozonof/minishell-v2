@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:11:25 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/21 10:28:44 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/28 19:26:26 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	ft_open_close(t_cmd *cmd)
 		}
 		cmd = cmd->next;
 	}
-}
+}//coucou
+
