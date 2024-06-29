@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:20:19 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/06/28 16:31:06 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/06/29 10:03:01 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,10 +319,10 @@ void			free_tab(int **tab);
 // ! ---------------------------------------------------------------------------
 
 //cd .c 3/5
-int				ft_cd(char **tab, t_env *env);
-int				ft_cd_2(char *path, t_env *env);
+int				ft_cd(char **tab, t_env *env, t_data **data);
+int				ft_cd_2(char *path, t_env *env, t_data **data);
 void			ft_add_oldpwd(char *old, t_env *env);
-int				ft_home(t_env *env);
+int				ft_home(t_env *env, t_data **data);
 void			ft_add_pwd(char *pwd, t_env *env);
 
 //echo 2/5
@@ -389,11 +389,11 @@ void			ft_close_one(int out, int in);
 //exec0.c 2/5
 int				ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip,
 					t_data **data);
-void			ft_exec_all0(t_redir **redir, t_pipex **pip);
+void			ft_exec_all0(t_pipex **pip);
 
 //exec.c 5/5
 int				ft_exec(t_cmd **cmd, t_env **env, t_data **data);
-void			ft_exec_all2(t_pipex *pip, t_redir **redir);
+void			ft_exec_all2(t_pipex *pip, t_redir *redir);
 int				ft_wait_lstchild(t_pipex *pip);
 int				ft_close_pipe(int count, int *pipe, int nbr_command,
 					t_pipex *pip);
@@ -419,7 +419,7 @@ void			ft_free_path(t_pipex *pip);
 char			*ft_check_command(int fd, char *command, t_data **data);
 
 //exec_utils.c 1/5
-int				ft_exec_openfd(t_cmd **cmd, t_redir **tmp, t_pipex **pip);
+int				ft_exec_openfd(t_cmd **cmd, t_redir *tmp, t_pipex **pip);
 int				ft_exec_bultins(t_cmd *cmd, t_env **env, int tokken,
 					t_data **data);
 void			ft_open_close(t_cmd *cmd);

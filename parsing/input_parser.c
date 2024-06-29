@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:14:23 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/06/28 16:37:39 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/06/28 19:30:15 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	input_parser(t_prompt *pr, t_data *data)
 	}
 	if (!init_exec_var(data))
 		return (free_master(data));
-	print_nodes(data->exec);
+	// print_nodes(data->exec);
 	ft_exec(&data->exec, &data->env, &data);
 	if (g_status == 1)
 	{

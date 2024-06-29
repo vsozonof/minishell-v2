@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:00:09 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/14 11:36:45 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:37:24 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_exec_pipebultins(t_cmd *tmp, t_env **env, int tokken, t_data **data)
 
 	result = 0;
 	if (tokken == CD)
-		result = ft_cd(tmp->param, *env);
+		result = ft_cd(tmp->param, *env, data);
 	else if (tokken == ECHO)
 		result = ft_echo(tmp->param);
 	else if (tokken == ENV)

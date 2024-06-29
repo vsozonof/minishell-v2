@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 07:37:59 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/12 16:47:10 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:59:43 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_exec_one(t_cmd *cmd, t_env **env, t_pipex *pip, t_data **data)
 
 	if (cmd->param[0] == NULL)
 		return (0);
-	exec.tokken = ft_exec_openfd(&cmd, &cmd->redirs, &pip);
+	exec.tokken = ft_exec_openfd(&cmd, cmd->redirs, &pip);
 	pip->out = dup(1);
 	pip->in = dup(0);
 	dup2(pip->infile, 0);

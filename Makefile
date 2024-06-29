@@ -6,14 +6,14 @@
 #    By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 23:22:06 by vsozonof          #+#    #+#              #
-#    Updated: 2024/06/10 09:53:49 by ertupop          ###   ########.fr        #
+#    Updated: 2024/06/29 09:37:02 by ertupop          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Iincludes -g3
+CFLAGS = -Wall -Werror -Wextra -Iincludes -g3 -MMD
 
 BL=\033[1;34m
 GR=\033[1;32m
@@ -74,23 +74,14 @@ SRCS	+= $(addprefix exec/SRC/, \
 			exec_utils.c \
 			exev_pars.c)
 
-# SRCS	+=	$(addprefix garbage_collector/, \
-# 			garbage_2.c \
-# 			garbage.c \
-# 			gc_garbage.c \
-# 			gc_utils.c)
-
 SRCS	+=	$(addprefix utils/, \
 			env_utils.c \
 			list_utils.c \
 			utils_bultins.c \
 			utils.c)
 
-# SRCS	+=	$(addprefix Bridge/, \
-# 			bridge.c \
-# 			bridge_error.c)
-
 OBJS = $(SRCS:.c=.o)
+DEPS = $(SRCS:.c=.d)
 
 RM = rm -f
 
@@ -111,14 +102,16 @@ init:
 
 clean:
 		make clean -C ./libft
-		@$(RM) $(OBJS)
+		@$(RM) $(OBJS) ${DEPS}
 		@echo "$(RD)MINISHELL -\t$(WH)$(GR)All .o files were deleted !$(WH)"
 
 fclean: 
 		make fclean -C ./libft
-		@$(RM) $(NAME) $(OBJS)
+		@$(RM) $(NAME) $(OBJS) ${DEPS}
 		@echo "$(RD)MINISHELL -\t$(WH)$(GR)All .o files and binaries were deleted !$(WH)"
 
 re: fclean all
+
+-include ${DEPS}
 
 .PHONY: all clean fclean re init

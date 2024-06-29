@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:43 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/21 10:26:30 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/06/29 09:57:57 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,42 @@ int	ft_exec(t_cmd **cmd, t_env **env, t_data **data)
 	return ((*data)->i_status);
 }
 
-void	ft_exec_all2(t_pipex *pip, t_redir **redir)
+void	ft_exec_all2(t_pipex *pip, t_redir *redir)
 {
 	if (pipe(pip->pipe))
 		return ;
 	pip->outfile = 1;
 	pip->infile = 0;
-	while (*redir)
+	while (redir)
 	{
-		if ((*redir)->type == OUTFILE)
-			pip->outfile = open((*redir)->file, O_TRUNC
+		if (redir->type == OUTFILE)
+		{
+			if (pip->outfile != 1)
+				close(pip->outfile);
+			pip->outfile = open(redir->file, O_TRUNC
 					| O_CREAT | O_RDWR, 00644);
-		else if ((*redir)->type == APPEND)
-			pip->outfile = open((*redir)->file, O_APPEND | O_CREAT
+		}
+		else if (redir->type == APPEND)
+		{
+			if (pip->outfile != 1)
+				close(pip->outfile);
+			pip->outfile = open(redir->file, O_APPEND | O_CREAT
 					| O_RDWR, 00644);
-		else if ((*redir)->type == INFILE)
-			pip->infile = open((*redir)->file, O_RDONLY, 00644);
-		*redir = (*redir)->next;
+		}
+		else if (redir->type == INFILE)
+		{
+			if (pip->infile != 0)
+				close(pip->infile);
+			pip->infile = open(redir->file, O_RDONLY, 00644);
+		}
+		else if (redir->type == LIMITER)
+		{
+			if (pip->infile != 0)
+				close(pip->infile);
+			pip->infile = open(redir->file, O_RDONLY, 00644);
+			unlink(redir->file);
+		}
+		redir = redir->next;
 	}
 }
 

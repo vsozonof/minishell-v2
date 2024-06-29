@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec0.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:20:12 by jule-mer          #+#    #+#             */
-/*   Updated: 2024/06/14 10:44:00 by rostrub          ###   ########.fr       */
+/*   Updated: 2024/06/29 10:02:24 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip, t_data **data)
 	pip->prev_pipes = -1;
 	while (pip->count_command < pip->nbr_command)
 	{
-		ft_exec_all2(pip, &cmd->redirs);
 		if (tmp == NULL)
 			return (0);
+		ft_exec_all2(pip, tmp->redirs);
 		pip->childs = fork();
 		if (pip->childs == 0)
 			ft_exec_pipe(tmp, env, pip, data);
-		ft_exec_all0(&cmd->redirs, &pip);
+		ft_exec_all0(&pip);
 		ft_close_fd(pip->infile, pip->outfile);
 		tmp = tmp->next;
 	}
@@ -35,13 +35,11 @@ int	ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip, t_data **data)
 	return (ft_wait_lstchild(pip));
 }
 
-void	ft_exec_all0(t_redir **outfile, t_pipex **pip)
+void	ft_exec_all0(t_pipex **pip)
 {
 	if ((*pip)->prev_pipes != -1)
 		close((*pip)->prev_pipes);
 	(*pip)->prev_pipes = (*pip)->pipe[0];
 	close((*pip)->pipe[1]);
 	(*pip)->count_command ++;
-	if ((*outfile) != NULL)
-		(*outfile) = (*outfile)->next;
 }
