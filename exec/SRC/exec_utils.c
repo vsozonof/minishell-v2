@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:11:25 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/29 09:59:01 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:14:12 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,10 @@ int	ft_exec_openfd(t_cmd **cmd, t_redir *tmp, t_pipex **pip)
 	(*pip)->infile = 0;
 	while (tmp)
 	{
-		if (tmp->type == OUTFILE)
-		{
-			if ((*pip)->outfile != 1)
-				close((*pip)->outfile);
-			(*pip)->outfile = open(tmp->file, O_TRUNC
-					| O_CREAT | O_RDWR, 00644);
-		}
-		else if (tmp->type == APPEND)
-		{
-			if ((*pip)->outfile != 1)
-				close((*pip)->outfile);
-			(*pip)->outfile = open(tmp->file, O_APPEND | O_CREAT
-					| O_RDWR, 00644);
-		}
-		else if (tmp->type == INFILE)
-		{
-			if ((*pip)->infile != 0)
-				close((*pip)->infile);
-			(*pip)->infile = open(tmp->file, O_RDONLY, 00644);
-		}
-		else if (tmp->type == LIMITER)
-		{
-			if ((*pip)->infile != 0)
-				close((*pip)->infile);
-			(*pip)->infile = open(tmp->file, O_RDONLY, 00644);
-			unlink(tmp->file);
-		}
+		if (tmp->type == OUTFILE || tmp->type == APPEND)
+			ft_open_outfile(*pip, tmp);
+		else if (tmp->type == INFILE || tmp->type == LIMITER)
+			ft_open_infile(*pip, tmp);
 		tmp = tmp->next;
 	}
 	tokken = ft_check2((*cmd)->param[0]);

@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 13:30:33 by firawar           #+#    #+#             */
-/*   Updated: 2024/06/10 07:35:37 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:58:00 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,20 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+void	ft_cd_update(char *tmpo, t_env *env, t_env *tmp)
+{
+	t_env	*old;
+
+	old = ft_get_env_pos(env, "OLDPWD");
+	if (old == NULL)
+		ft_add_oldpwd(tmp->var + 4, env);
+	else
+	{
+		free(old->var);
+		old->var = ft_strjoin("OLDPWD=", tmp->var + 4);
+	}
+	free(tmp->var);
+	tmp->var = ft_strjoin("PWD=", tmpo);
 }

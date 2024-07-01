@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:20:12 by jule-mer          #+#    #+#             */
-/*   Updated: 2024/06/29 10:02:24 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:08:11 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip, t_data **data)
 	{
 		if (tmp == NULL)
 			return (0);
-		ft_exec_all2(pip, tmp->redirs);
+		ft_exec_all_open_file(pip, tmp->redirs);
 		pip->childs = fork();
 		if (pip->childs == 0)
 			ft_exec_pipe(tmp, env, pip, data);
@@ -42,4 +42,39 @@ void	ft_exec_all0(t_pipex **pip)
 	(*pip)->prev_pipes = (*pip)->pipe[0];
 	close((*pip)->pipe[1]);
 	(*pip)->count_command ++;
+}
+
+void	ft_open_outfile(t_pipex *pip, t_redir *redir)
+{
+	if (redir->type == OUTFILE)
+	{
+		if (pip->outfile != 1)
+			close(pip->outfile);
+		pip->outfile = open(redir->file, O_TRUNC
+				| O_CREAT | O_RDWR, 00644);
+	}
+	else if (redir->type == APPEND)
+	{
+		if (pip->outfile != 1)
+			close(pip->outfile);
+		pip->outfile = open(redir->file, O_APPEND | O_CREAT
+				| O_RDWR, 00644);
+	}
+}
+
+void	ft_open_infile(t_pipex *pip, t_redir *redir)
+{
+	if (redir->type == INFILE)
+	{
+		if (pip->infile != 0)
+			close(pip->infile);
+		pip->infile = open(redir->file, O_RDONLY, 00644);
+	}
+	else if (redir->type == LIMITER)
+	{
+		if (pip->infile != 0)
+			close(pip->infile);
+		pip->infile = open(redir->file, O_RDONLY, 00644);
+		unlink(redir->file);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:43 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/29 09:57:57 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:07:51 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_exec(t_cmd **cmd, t_env **env, t_data **data)
 	return ((*data)->i_status);
 }
 
-void	ft_exec_all2(t_pipex *pip, t_redir *redir)
+void	ft_exec_all_open_file(t_pipex *pip, t_redir *redir)
 {
 	if (pipe(pip->pipe))
 		return ;
@@ -39,33 +39,10 @@ void	ft_exec_all2(t_pipex *pip, t_redir *redir)
 	pip->infile = 0;
 	while (redir)
 	{
-		if (redir->type == OUTFILE)
-		{
-			if (pip->outfile != 1)
-				close(pip->outfile);
-			pip->outfile = open(redir->file, O_TRUNC
-					| O_CREAT | O_RDWR, 00644);
-		}
-		else if (redir->type == APPEND)
-		{
-			if (pip->outfile != 1)
-				close(pip->outfile);
-			pip->outfile = open(redir->file, O_APPEND | O_CREAT
-					| O_RDWR, 00644);
-		}
-		else if (redir->type == INFILE)
-		{
-			if (pip->infile != 0)
-				close(pip->infile);
-			pip->infile = open(redir->file, O_RDONLY, 00644);
-		}
-		else if (redir->type == LIMITER)
-		{
-			if (pip->infile != 0)
-				close(pip->infile);
-			pip->infile = open(redir->file, O_RDONLY, 00644);
-			unlink(redir->file);
-		}
+		if (redir->type == OUTFILE || redir->type == APPEND)
+			ft_open_outfile(pip, redir);
+		else if (redir->type == INFILE || redir->type == LIMITER)
+			ft_open_infile(pip, redir);
 		redir = redir->next;
 	}
 }

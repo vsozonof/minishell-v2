@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:20:19 by tpotilli          #+#    #+#             */
-/*   Updated: 2024/06/29 10:03:01 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:58:10 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,10 +390,12 @@ void			ft_close_one(int out, int in);
 int				ft_exec_all(t_cmd *cmd, t_env **env, t_pipex *pip,
 					t_data **data);
 void			ft_exec_all0(t_pipex **pip);
+void			ft_open_outfile(t_pipex *pip, t_redir *redir);
+void			ft_open_infile(t_pipex *pip, t_redir *redir);
 
 //exec.c 5/5
 int				ft_exec(t_cmd **cmd, t_env **env, t_data **data);
-void			ft_exec_all2(t_pipex *pip, t_redir *redir);
+void			ft_exec_all_open_file(t_pipex *pip, t_redir *redir);
 int				ft_wait_lstchild(t_pipex *pip);
 int				ft_close_pipe(int count, int *pipe, int nbr_command,
 					t_pipex *pip);
@@ -444,4 +446,5 @@ char			*ft_find_env(t_env *env, char *find);
 void			ft_free_envp(char **envp);
 char			*ft_strcat(char *s1, char *s2);
 int				ft_strcmp(char *s1, char *s2);
+void			ft_cd_update(char *tmpo, t_env *env, t_env *tmp);
 #endif

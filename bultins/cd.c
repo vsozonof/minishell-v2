@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 06:50:00 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/29 09:48:33 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:57:45 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_home(t_env *env, t_data **data)
 int	ft_cd_2(char *path, t_env *env, t_data **data)
 {
 	t_env	*tmp;
-	t_env	*old;
 	char	*tmpo;
 
 	tmpo = NULL;
@@ -50,18 +49,7 @@ int	ft_cd_2(char *path, t_env *env, t_data **data)
 		return (1);
 	tmp = ft_get_env_pos(env, "PWD");
 	if (tmp != NULL)
-	{
-		old = ft_get_env_pos(env, "OLDPWD");
-		if (old == NULL)
-			ft_add_oldpwd(tmp->var + 4, env);
-		else
-		{
-			free(old->var);
-			old->var = ft_strjoin("OLDPWD=", tmp->var + 4);
-		}
-		free(tmp->var);
-		tmp->var = ft_strjoin("PWD=", tmpo);
-	}
+		ft_cd_update(tmpo, env, tmp);
 	else
 		ft_add_pwd(tmpo, env);
 	free((*data)->pr->w_d);
