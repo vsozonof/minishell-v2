@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 06:50:00 by ertupop           #+#    #+#             */
-/*   Updated: 2024/07/01 15:57:45 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/02 11:00:23 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_cd(char **tab, t_env *env, t_data **data)
 {
 	if (ft_size_tab(tab) > 2)
-		ft_putstr_fd("minishell: cd : too many arguments", 2);
+		ft_putstr_fd("minishell: cd : too many arguments\n", 2);
 	else if (ft_size_tab(tab) == 1)
 		return (ft_home(env, data));
 	else

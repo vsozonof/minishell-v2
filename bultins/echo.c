@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 06:27:10 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/28 19:27:24 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/02 10:55:52 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_echo2(char **tab, int i, int n)
 			ft_fprintf(2, "minishell: ");
 			ft_fprintf(2, "echo: write error: No space left on device\n");
 		}
+		if (tab[i + 1] != NULL)
+			write(1, " ", 1);
 		i++;
 	}
 	if (n != 1)

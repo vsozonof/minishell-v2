@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 07:37:59 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/29 09:59:43 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/02 11:16:57 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_execve_one(t_env **env, t_pipex *pip, t_cmd *tmp, t_data **data)
 {
 	int		result;
 
+	result = 0;
 	pip->childs = fork();
 	if (pip->childs == 0)
 	{

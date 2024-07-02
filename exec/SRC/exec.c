@@ -6,7 +6,7 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 08:11:43 by ertupop           #+#    #+#             */
-/*   Updated: 2024/07/01 15:07:51 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/02 11:17:28 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	ft_wait_lstchild(t_pipex *pip)
 	int		tmprtr;
 	int		pidw;
 
+	tmprtr = 0;
 	pidw = waitpid(-1, &tmprtr, 0);
 	while (pip->count_command != 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   single_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:14:42 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/02/27 19:05:53 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:55:50 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	single_node_handler(t_data *data)
 		return (set_status(data, 12, "malloc error", "malloc"), 0);
 	data->exec = ptr;
 	tab = input_to_lst(data);
+	// annoying_quotes_handler(tab);
 	if (!tab)
 		return (ft_split_free(tab),
 			set_status(data, 12, "malloc error", "malloc"), 0);

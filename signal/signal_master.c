@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_master.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:27:48 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/02/28 00:27:30 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:27:02 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	handle_signals(int signum)
 			close(STDIN_FILENO);
 		g_status = 1;
 		free(ptr.post);
+		free(ptr.w_d);
 	}
 	else if (signum == SIGQUIT)
 		rl_on_new_line();

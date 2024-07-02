@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   counters.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsozonof <vsozonof@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:26:53 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/02/23 14:18:54 by vsozonof         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:59:08 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ int	quote_skipper(char *str, int c)
 	}
 	if (str[c] == 39 || str[c] == '"')
 		c++;
+	if (str[c] == 39 || str[c] == '"')
+		return ((quote_skipper(str, c) - c) + c);
 	return (c);
 }
