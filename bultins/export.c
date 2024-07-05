@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 06:36:35 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/17 06:50:04 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/05 07:37:10 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ void	ft_export2(char *tab, t_env *tmp, t_env **env)
 	tmp = ft_get_env_pos_export(*env, tab);
 	if (tmp == NULL)
 	{
-		ft_add_export(tab, env);
+		tmp = ft_add_export(tab, env);
 	}
 	else
 	{
 		if (ft_find_plus(tab) == 1)
 			ft_join_export(tab, tmp);
 		else
+		{
+			free(tmp->var);
 			tmp->var = ft_strdup(tab);
+		}
 	}
 }
 

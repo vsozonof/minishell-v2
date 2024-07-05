@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rostrub <rostrub@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 09:00:09 by ertupop           #+#    #+#             */
-/*   Updated: 2024/06/29 09:37:24 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/05 08:08:14 by rostrub          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	ft_exec_pipe5(t_pipex *pip, t_env **env, t_cmd *tmp, t_data **data)
 	pip->command = ft_command(pip, tmp->param[0], env, data);
 	if (pip->command == NULL)
 	{
-		ft_fprintf(2, "minishell : ");
-		ft_fprintf(2, "%s: command not found\n", tmp->param[0]);
+		ft_fprintf(2, "minishell : %s: command not found\n", tmp->param[0]);
 		close(pip->pipe[0]);
 		close(pip->pipe[1]);
 		close(0);
