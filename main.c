@@ -6,13 +6,13 @@
 /*   By: ertupop <ertupop@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 23:29:44 by vsozonof          #+#    #+#             */
-/*   Updated: 2024/07/01 09:49:38 by ertupop          ###   ########.fr       */
+/*   Updated: 2024/07/05 20:43:33 by ertupop          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// valgrind --leak-check=full --suppressions=rl_leak_ignore.supp ./minishell
+// valgrind --leak-check=full --suppressions=rl_leak_ignore.supp --show-leak-kinds=all ./minishell
 int	g_status = 0;
 
 int	get_input(t_prompt *prompt, t_data *data)
